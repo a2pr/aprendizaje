@@ -1,0 +1,95 @@
+Aprendizaje SASS
+    Variables
+    Permiten realizar operaciones con los valores de las variables, o aplicarles funciones a dichos valores.
+    $(Variables): (valor);
+    $color: red;
+        introduccion de texto
+            $root:"/images/";
+            #form{
+                background:url("{root}background.jpg")
+            }
+            $name:"my-class";
+            .#{$name}{
+                color:blue;
+            }
+    rules
+    primera regla{
+        segunda regla{
+            tercera regla{
+
+            }
+        }
+    }
+        Esto funciona no solo para elemetnos dentro de otros elementos. SI no que tambien para pseudo elementos pero debe agregarse el &.
+        Ademas funciona para propiedades varias de un atributo
+        .button{
+            font:{
+                family:verdana;
+                size:14px;
+            }
+        }
+    Directivas
+        @import, debe ser un documento css importa  documentos a nuestro documento sass
+            @import "foo.css" o "foo"
+        @extend, permite extender reglas de otros elementos
+        .button{
+            color:Black;
+        }
+        .submit-button{
+            @extend .button;
+        }
+        @mixin, funcionan como funciones y pueden ser usadas para agregar atributos a un elemento al proporcionarse un valor
+        @mixin font-large{
+            font:{
+                size:14px;
+                weight:bold;
+            }
+        }
+        #form{
+            @include font-large;
+        }
+        @mixin rounded-corners-all($size){
+            border-radius:$size;
+        }
+        #form{
+            @include rounded-corners-all(5px);
+        }
+        @mixin rounded-corners-all($size:5px){
+            border-radius:$size;
+        }
+        #form{
+            @include rounded-corners-all;
+        }
+        @function, permite realizar calculos de variables
+        $app-width:900px;
+        @function column-wodth($cols){
+            @return ($app-width/$cols)- ($cols*5px)
+        }
+        .col2{
+            width:columnwidth(2);
+        }
+    Control directives
+        @if
+        @else if
+        @else
+        @for
+        @while
+
+        h1{
+            @if $size > 14px{
+                color:blue;
+            }
+        }
+        @each $item in first,second,third, fourth{
+            .#{$item}{
+                background-url(/images/#{item}.jpg);
+            }
+        }
+
+        $i:1;
+        @while $1<5{
+            h#{$i}{
+                font-size: $i*4px;
+                $i:$i +1;
+            }
+        }

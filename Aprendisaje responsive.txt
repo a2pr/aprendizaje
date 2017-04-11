@@ -1,0 +1,44 @@
+Aprendizaje responsive web design
+    Fluid Foundation
+        COmo crear disenios de marcos por porcentaje en vez de fijos.
+        .span-1 {
+            width ()porcentaje%;
+        }
+    Flexible content
+        img{
+            max-widht:100%;// no excedera el maximo de su contenedor
+        }
+    Media queries
+        @Media(media feature){
+            reglas
+        }
+        Media Features
+            mid-width
+            max-width
+            device-width
+            device-height
+            aspect-ratio
+            width
+            orientation
+    better do Larger first
+    Other considerations
+        TOuch target
+        Hover states
+        contrast
+        Readibility
+    Responsive web design process
+        COntent priority prototype
+            Es mejor trabajar primero en el HTML para diseniar el prototipo de la pagina.
+                Donde se definira las prioridades del contenido
+             Y luego ocuparse del disenio del contenido.
+        Style priority
+            Definir los estilos de contenido, contenedores, colores texturas.
+            Facil de mostrar en los diferentes navegadores
+            AL mostrar al cliente, hacer modificaciones en el momento.
+
+    Aplying RWD
+    Utilizando em
+        SOn proporciones mas medidas
+        Los layouts adjust se basan en el font-size
+        adiere mas principio a RWD
+        

@@ -1,0 +1,147 @@
+Templates HTML 5
+    <template>
+    Caracteristicas
+        Todo lo que se encuentre dentro no sera corrido por el navegador.
+        Escondido por selectores
+        Es flexible al ubicarlo
+    Debe ser activado mediante 3 pasos
+        1   se seleccion una vairable
+            var template= document.querySelector('#mytemplate');
+        2   Clonar el contenido del template
+            var clone= document.imporNode(template.content,true);
+        3   Finalmente se agrega el contenido donde sea colocar
+            document.body.appendChild(clone);
+
+        <body>
+        <template>
+        <p>hi</p>
+        </template>
+        <script>
+        var template= document.querySelector('template');
+        var clone= document.importNode(template.content,true);
+        document.body.appendChild(clone); //a menos que este script no este colocado, el elmento template no sera renderizado
+        </script>
+        </body>
+    Introducir data en los Templates
+    Utilizando el ejemplo siguiente, se puede agregar contenido al template al realizar una accion como un click o demas
+    clone.querySelector('.class').textContent="texto cualquiera";
+    Templates anidadas
+        En este caso cada template debe ser activadas cada una manualmente, llamadas por su propio id o class
+Custom elements
+    Al definir tu propio elemento HTML, se debe utilizar un -
+        <my-component>
+    Se puede extender estos elementos a elementos basicos con el atributo Caracteristicas
+        <input type="text" is="search">
+    Resgistrando custom elemnts
+        1- Crear prototipo
+            var slicksbars= Object.create(HTMLElement.prototype);
+                //aqui se agregan las propiedades y funciones  del prototipo
+        2-registrar nuevos elementos via registerElement
+            document.registerElement('slicksbars');
+        3-Agregar al dom(existen varias formas)
+            .1 colocar la etiqueta del nombre en el documento
+                <slicksbars></slicksbars>
+            .2 agregarlo como un nuevo elemento por javascript
+                var comment= new slicksbars;
+                document.body.appendchild(comment);
+            .3 creando el nuevo elemento por javascript
+                var comment= document.createElement('slicksbars');
+                document.body.appendchild(slicksbars);
+
+            document.body.appendChild(new slicksbars());
+    Extended custom elements tool
+        realizando todo el registro y agregando
+            var slicksbarsextended = document.registerElement('slicksbars',{
+                prototype: slicksbars,
+                extendes: ''
+            });
+        para extender un elemento se utilizan varios metodos
+            .1 utilizando el atributo is en HTML
+                <button is="super.button">    
+            .2 creando el elmento por javascript
+                <var button = document.createElement('button','super-button'); // donde el segundo parametro es la extension del parametro q se quiere Crear
+            .3 nuevo operardor
+                document.body.appendChild(new SuperButton());
+    Ciclo de vida metodo callback
+        createdCallback
+            INstancia es creada 
+        attachedCallback
+            Instancia es insertada en el dom
+        DetachedCallBack
+            Instancia es removida del dom
+        attributeChangedCallback
+            Atributo es agregado, removido o actualizado
+    Namespacing
+        Es mejor utilizar prefijos al nombras custom elements
+            <ps-contact-form> o <pluralsight-contact-form>
+            estos prefijos pueden ser:
+                nombre de compañia
+                    <twitter-tweet-button>
+                    si son nombres largos es mejor usar una abreviatura, pero es mejor que sea comentada.
+                Nombre de marca
+                    <kendoui-grid>
+
+                Nombre de apliacion
+                    Tambien se puede utilizar prefijos por su aplicacion
+                    <billme-grid>
+                usuario de Github
+    2 Doms
+        Light DOM 
+        Shadow DOM
+            Son el contenido de los diferentes elementos de HTML
+            como <video>
+            algo parecido a esto seria los elementos <iframes>
+        Logical DOM
+            Esta compuesto del ligh y shadow DOM, describe ambos DOM
+        Introducir shadow dom
+            se define donde se quiere colocar el shadow dom
+            se define el shadowdom
+            se agregar los elementos html del shadow dom
+
+                <body>
+                    <div id="host"></div>
+                    <script>
+                        var host= document.getElementById('host'); // oobtengo el elmento por id
+                        var root= host.createShadowRoot(); //Se define el shadow dom
+                        root.innerHTML= "<h1>Hi</h1>" // Se agregaron los elementos
+                    </script>
+                </body>
+            Se puede utilizar los templates para agregar shadow Doms
+                Se define el template
+                se agregael template en el shadow dom pre definido
+
+                   <body>
+                    <template>
+                        <h1> Hello from the shadow DOM</h1>    
+                    </template>
+                    <script>
+                        var template= document.querySelector('template');  //se define el template
+                        var host= document.getElementById('host');
+                        var root= host.createShadowRoot(); //Se define el shadow dom
+                        root.appendChild(document.importNode(template.content,true)); // se agrega el template al shadown dom
+                    </script>
+                </body>     
+        Shadow boundary
+            Este burbuja conceptual, evita q los estilos del light dom se apliquen al shadow dom. Si se desea aplicar styles al shadow deben ser dentro del shadow boundary.
+        El javascript dentro del shadow dom, no esta encerrado en el. En cambio, los elementos dentro del shadown dom seran complicados de ser utilizados por el javascript a menos que se invoquen con formas especificas.
+    Shadow dom insertion & events
+        Insertion points
+            se crea el punto de insercion para un elemento shadow dom(template)
+            se indican los elementos que se quieren agregar
+
+                <template>...</template>
+                <script>
+                    var CommentProto= Object.create(HTMLElement.prototype); //variable de shadow dom
+                    CommentProto.createdCallback= function(){ //funcion que obtiene elementos para el shadow DOM
+                        var template =document.querrySelector('template'); //se define el template
+                        var shadow =this.createShadowRoot(); //se define el shadow DOM
+                        shadow.appendChild(document.importNode(template.content,true)); //Se esta agregando el contenido que se especifica en el template al shadow DOM
+
+                    }
+                    document.registerElement('comment-form',{ //se especifica la etiqueta custom donde se colocaran los elementos que se utilizaran
+                        prototype: CommentProto //se especifica para utilizar la funcion anterior
+                    });
+                    </script>
+        Insertion points vs distributed nodes
+            distributed nodes son los elementos que se mostraran en el insertion point. Pero los distributed nodes, son simplemente mostrados en el Insertion point. No son agregados al shadow dom.
+            
