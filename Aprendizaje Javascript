@@ -1,0 +1,35 @@
+Objects
+    formating
+        var objectName={
+            properties1:"value",
+            properties2:"value"
+        };
+    How to use
+        alert(objectName.properties1);
+    Methods
+        An Object property with a function as a value
+            var objectName ={
+                propertyMethod: function(){
+                    some function
+                }
+            }
+    Objects constructor
+        Function that creates templates for Objects
+        function objectTemplate(value1,value2){
+            this.parameter= value1; /*general way to create and object*/
+            this.parameter= value2;
+        }
+        How to invoke
+            var objectName= New objectTemplate("..","...");
+    types of Objects
+        host Objects
+            Objects defined by the enviorament in which your code is run
+        Core Objects
+            Objects defined by and built into the Javacript language itself
+Global variables can be used on local functions. But not the other way around.
+Its better use "var" when declaring a variable.
+Coding conventions
+    indentation
+    using methods with their Objects
+    Leaving extra spaces
+    
