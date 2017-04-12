@@ -32,4 +32,33 @@ Coding conventions
     indentation
     using methods with their Objects
     Leaving extra spaces
-    
+
+creating a object property with bracket notation
+    objectName['property']= 'value'
+property   
+    to change the propertys attribute we use 
+        Object.defineProperty(objectName,'property', {writable:false}) //writable is the attribute
+    with the enumarable attribute set in false, you can't numerable the property. But you can still show     
+    with the configurable attribute set in false, it cannot be changed any property like enumerable or delete any property. But it can set writable as false. 
+    getters & setters attribute allows us to create a property using another propertys values.
+        var cat={
+            name: 'fluffy',
+            color: 'white'
+        }
+    Object.defineProperty(objectName, 'propertyName',{
+        get:function(){
+            return this.name+ " " + this.color
+        }
+    })
+prototypes and inheritance
+     a function's prototype is the instance that will become the prototype for all objects created using this constructor.
+        function objectName(value1, value2){
+            this.name= value1
+            this.color= value2
+        }
+        objectName.prototype.age=4
+
+     an object's prototype is the object instance from which the object inherited.
+        Object.__proto__.age
+
+        
