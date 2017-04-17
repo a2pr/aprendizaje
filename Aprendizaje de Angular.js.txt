@@ -1,0 +1,44 @@
+how to add angular.jss 
+    <script src="angular.js"></scripts>
+add ng-app attribute in the html
+    <div ng-app></div>
+    where this attribute is locate it will apply the angular settings
+    functions as abstractions
+        we can use a function as a base to pass to angular. We can use that to reuse any kind of functions.
+    modules
+        its a way to define a function1 that can return a value from a function2 define inside the function1
+            var function1 = function(){
+                var function2.1 =function(){
+                    console.log("some value");
+                };
+                var function2.2 = function() {
+                    console.log=("some other value");
+                };
+                return{
+                    value1:function2.1,
+                    value2:function2.2
+                };
+            }
+            function1.value1();// it will sent function2.1 result
+            immediately invoked function expression(IIFE)
+                One way to avoid global variables is using the IIFE
+                    (function(){
+                        some code...
+                    }());
+                    its a function  that has some functions inside of his code that immediatly invokes itself
+    Controller
+        Its the one who controls all the modules of the application. we need to set the attribute
+         ng-controller attribute
+         we define this attribute with a name and we get the set of actions it will command
+            <div ng-app>
+                <div ng-controller ="MainController">
+                    <h1>{{message}}</h1
+                </div>
+            </div>
+            so in this light we can assume controllers are mere functions from angular that use a special way to call parameters 
+            var MainController = function($scope){
+                $scope.message ="Hello";
+            };
+            the model that we attach to the parameter will go a execute the actions define in our module. Such as sending a message.
+            this can be use to change the content of html elements and their attributes too.
+            
