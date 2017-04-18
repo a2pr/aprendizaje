@@ -41,4 +41,99 @@ add ng-app attribute in the html
             };
             the model that we attach to the parameter will go a execute the actions define in our module. Such as sending a message.
             this can be use to change the content of html elements and their attributes too.
-            
+            directive for src images(ng-src)
+                <img ng-src="{{objectName.imageSrc}}">
+    $http service
+        Encapsualtes HTTP communication
+            GET,POST,PUT,DELETE
+            var PersonController = function($scope, $http){
+                $scope.user= $http.get("/users/1783")
+            }
+        always returns a promise to return a value in the future
+        a way to use this can e 
+
+        var MainController = function ($scope,$http){
+            var onUserComplete = function(response){ //this function will locate the information require in the variable user
+                $scope.user = response.data;
+            };
+            $http.get("somelink")   //this will get the information we will need
+            .then(onUserComplete)   //this after getting the information will execute a function with the information we got as a parameter
+        }
+    modules
+        Home for the controllers, to avoid global namespace
+        set up a module
+            var app= angular.module("nameModule",[]);
+            var nameController =function($scope, $http){
+                some code
+            };
+            app.controller("nameController", nameController);
+    A good practices with modules and controllers is to separate, modules and controllers in differents js files.
+    That way it will be easier to read the code for that part of our code.
+
+    Directives
+        Allows for inderect model view interaction, both ways. From module to user, and viceverse.
+        ng-model allows to grab information that the user provides and asign it as a value for a property in the $scope
+            <input type="search" ng-model="username"/> //username will be the property of the $scope
+        ng-click allows us to on the event of the click of the user apply some function we need
+            <input type="submit" value="search" ng-click="search(username)"/> //normally this search will be a function, and the username parameter will be a parameter we send the function
+        instead of the event of the click, we can use the ng-submit to indicate the form to send the information from the form to the function.
+            <form ng-submit="search(username)"></form>
+        ng-repeat, allow us to create a loop where we can add the different data that a function can get
+            var onUserComplete = function(response){ //this will get the information from the user
+                $score.user = response.data;
+                $http.get($score.user.repos_url)
+                    .then(onRepos, onError);
+            };
+            var onRepos =function(response){    // this will set the specific information on the repos property for the $scope
+                $score.repos=response.data;
+            };
+            to invoke
+                <tr ng-repeat="repo in repos" // all the repo in repos will be expose each time in a diferent tr wit the corresponding field
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.stargazers_count | number}}</td> //| is a pipe that defines one type of filters from angular.
+                    <td>{{repo.language}}</td>
+                </tr>
+    filters
+        format
+            expresion | filterName:parameter
+            ejem
+                currency
+                {{amount| currency:"USD$"}}
+            this parameter can be store in the js as a property of the scope and the user can select it
+                $scope.propertyName ="+(or -)parameter value" // + ascending or -descending
+                <select ng-model="propertyName"> //this will direct the user selection of parameter value to the filter property value.
+                    <option value="parameterValue"> Value1</option>
+                </select>
+            ng-show, allow us to show the content inside the element if the condition value is truth( a valid object)
+                <div ng-show="user"></div>
+            ng-hide, allow us to hide the content inside the element if the condition value is truth
+                <div ng-hide="!user"></div
+            ng-include, allow us to include html content in another files 
+            <div ng-include="'nameofthedocument.html'"></div>
+    Services
+        Can offer functionality for model or controller. Or some way to reuse another type of functions in the app.
+        $interval(function, time,repetition);// function that will happen, the number of time between repetition, the number of repitition.
+        $log, allow us to sent info to the console about the thigs happening in the app. that can't be seen in the view such as
+            $log.info("searching for"+ parameter);
+        $anchorScroll
+        $location
+        custom service
+        this way you can simplify diferent functions in the controller.
+            create reusable logic
+            create shared data
+            Manage complexity
+        this services can use another services in the definition. And will return and object. 
+        register a services
+            module.factory("Module name",functionName); // the name of the module, the name of the function which will be the module
+    routing
+        Is based on URL 
+        The engine captures the request in th URL
+        With a set of rules it will render a response
+        depends on the module angular-route.js
+        to configure the rules for this routing we use $routeProvider
+            $routeProvider
+                .when("/main.html,{ //when the routing indicates this particular page
+                    templateUrl:"main.html", // it will trigger the template for the specific pages
+                    controller:"MainController" // and it will use a specific controller
+                })
+        
