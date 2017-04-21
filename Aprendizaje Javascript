@@ -4,6 +4,17 @@ Objects
             properties1:"value",
             properties2:"value"
         };
+        or
+        var objectName= new Object();
+        or
+        var objectName= create.Object();    
+    assigning keys and values
+    var objectName={};
+    objectName.param="value"; //param will be the key
+    or
+    objectName["param"]="value";
+    or
+
     How to use
         alert(objectName.properties1);
     Methods
