@@ -61,4 +61,65 @@ prototypes and inheritance
      an object's prototype is the object instance from which the object inherited.
         Object.__proto__.age
 
+Patttern
+    uses the new keyword. it will
+        create a new object
+        links to an object property
+
+    Contructor formating
+        var objectName= function(parameter){
+            this.name= name;
+            this.completed= false;
+            this.complete= function(){
+                some code
+            }
+            this.save= function(){
+                some code
+            }
+        }
+    var objectName2= new objectName("new template"); // this will create and objectName prototype call objectName2, with the parameter new template.  
+    Prototypes
+        Allow us to  uses predifined methods or propertys in all the new objects
+            objectName.prototype.complete= function(){
+                some code
+            }
+            objectName.prototype.save =function(){
+                some code
+            }// with this every new object with the constructor objectName will have the predefined methods save and complete.
+    In node.js we can breakdown this constructors in diferent files with
+    
+        {
+            some code
+        }
+        module exports= someName //the name of the file were the object is 
+
+        in the the file we want to impor the files
+        var objectName = requiere('./someName');
+    In angular js the way to create constructors is using the app.factory
+
+    (function(){
+        var app = angular.module('controller');
+        app.factory('objectName',function(){ //object name will be the name of the object protetype in angular
+
+            some propertys of the task
+
+            return objectName;
+        });
+    }());
+    Module Patttern
+        Simple way to encapsulate  methods
+
+        var objectName =function(){
+            var someFunction= function{
+                some code
+                };      //methods we store in this object
+            return{
+                get:get         //list of methods we return 
+            }
+        }
+        module.exports
+    factory Patttern
+        simplifies object creation
+        creating diferent objects based on need
+        repository creation
         
