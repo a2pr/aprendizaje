@@ -102,7 +102,6 @@ Patttern
         app.factory('objectName',function(){ //object name will be the name of the object protetype in angular
 
             some propertys of the task
-
             return objectName;
         });
     }());
@@ -122,4 +121,4 @@ Patttern
         simplifies object creation
         creating diferent objects based on need
         repository creation
-        
+
