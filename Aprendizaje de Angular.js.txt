@@ -125,6 +125,7 @@ add ng-app attribute in the html
         this services can use another services in the definition. And will return and object. 
         register a services
             module.factory("Module name",functionName); // the name of the module, the name of the function which will be the module
+            
     routing
         Is based on URL 
         The engine captures the request in th URL

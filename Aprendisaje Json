@@ -1,0 +1,33 @@
+json format
+{"":"","":"","":""} string value lvl 1
+{"":"","":{"":"","":""},"":""} string value lvl 2
+{"":"","":{"":"","":"","":{"":"","":""}},"":""} string value lvl3
+how to convert a javascript string to json. With JSON.parse() function
+    var variable='{"property":"value","property2":"value2"}';
+    var myObject = JSON.parse(variable);
+viceverse  we use JSON.stringfy to convert from json to a javascript string
+
+arrays in JSON
+[
+    {"":"","":"","":""},
+    {"":"","":"","":""}
+]
+
+{"":[{"":"","":"","":""}],"":"","":""}
+
+{"":["","",""],"":"","":""}
+
+
+
+AJAX
+this will  led us upload an external json file
+
+    var cow= new XLMHttpRequest();
+    cow.open('method','path','true'); //method will be usen in this open  request, and the path to apply the method
+    cow.send(); //will send what we get in the open
+TO get the text we just request we use the property
+    cow.responseText 
+and we use this with the JSON.parse function
+when cow.status is equals to 200 the request has been succesful
+
+to load arrays in javascript it use the same proccess as before
